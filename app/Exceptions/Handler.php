@@ -26,11 +26,11 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         // Custom Logging for all exception
-        $this->reportable(function (Throwable $e) {
-            Log::channel('daily')->error('error: '.$e->getMessage(), [
-                'time' => now()->toDateTimeString(),
-            ]);
-        });
+        // $this->reportable(function (Throwable $e) {
+        //     Log::channel('daily')->error('error: '.$e->getMessage(), [
+        //         'time' => now()->toDateTimeString(),
+        //     ]);
+        // });
     }
 
     public function render($request, Throwable $exception)
