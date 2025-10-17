@@ -23,7 +23,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('JwtAuth');
-    Route::get('/refresh-token', [AuthController::class, 'refreshToken'])->middleware('JwtAuth');
+    Route::get('/refresh-token', [AuthController::class, 'refreshToken']);
 });
 
 // USER

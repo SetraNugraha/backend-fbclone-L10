@@ -44,10 +44,10 @@ class AuthController extends ApiController
             60 * 24,                                            // Expiration time in minutes (1 day)
             '/',                                                // Path (cookie available for all routes)
             null,                                               // Domain (null = current domain)
-            app()->environment('production'),                   // Secure flag: only send over HTTPS in production
+            config('app.env') === 'production',                   // Secure flag: only send over HTTPS in production
             true,                                               // HttpOnly: not accessible via JavaScript (prevents XSS)
             false,                                              // Raw: whether the cookie value should be URL encoded
-            app()->environment('production') ? 'None' : 'Lax'   // SameSite policy: 'None' for cross-site cookies in production, 'Lax' for local dev
+            config('app.env') === 'production' ? 'None' : 'Lax'   // SameSite policy: 'None' for cross-site cookies in production, 'Lax' for local dev
         );
 
         return $response;
@@ -66,7 +66,7 @@ class AuthController extends ApiController
     public function refreshToken(Request $request)
     {
         $refreshToken = $request->cookie('refresh_token');
-        $result = $this->authService->refreshToken(($refreshToken));
+        $result = $this->authService->refreshToken($refreshToken);
         $response = response()->json([
             'access_token' => $result['access_token'],
             'refresh_token' => $result['refresh_token'],
@@ -78,10 +78,10 @@ class AuthController extends ApiController
             60 * 24,                                            // Expiration time in minutes (1 day)
             '/',                                                // Path (cookie available for all routes)
             null,                                               // Domain (null = current domain)
-            app()->environment('production'),                   // Secure flag: only send over HTTPS in production
+            config('app.env') === 'production',                   // Secure flag: only send over HTTPS in production
             true,                                               // HttpOnly: not accessible via JavaScript (prevents XSS)
             false,                                              // Raw: whether the cookie value should be URL encoded
-            app()->environment('production') ? 'None' : 'Lax'   // SameSite policy: 'None' for cross-site cookies in production, 'Lax' for local dev
+            config('app.env') === 'production' ? 'None' : 'Lax'   // SameSite policy: 'None' for cross-site cookies in production, 'Lax' for local dev
         );
 
         return $response;
