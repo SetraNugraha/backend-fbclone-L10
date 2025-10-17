@@ -39,15 +39,15 @@ class AuthController extends ApiController
         ], 200);
 
         $response->cookie(
-            'refresh_token',
-            $result['refresh_token'],
-            60 * 24, // 1 Day
-            '/',
-            null,
-            false, // secure (HTTPS)
-            true, // httpOnly
-            false, // raw
-            'Strict' // sameSite
+            'refresh_token',                                    // Cookie name
+            $result['refresh_token'],                           // Cookie value (the refresh token)
+            60 * 24,                                            // Expiration time in minutes (1 day)
+            '/',                                                // Path (cookie available for all routes)
+            null,                                               // Domain (null = current domain)
+            app()->environment('production'),                   // Secure flag: only send over HTTPS in production
+            true,                                               // HttpOnly: not accessible via JavaScript (prevents XSS)
+            false,                                              // Raw: whether the cookie value should be URL encoded
+            app()->environment('production') ? 'None' : 'Lax'   // SameSite policy: 'None' for cross-site cookies in production, 'Lax' for local dev
         );
 
         return $response;
@@ -73,15 +73,15 @@ class AuthController extends ApiController
         ], 200);
 
         $response->cookie(
-            'refresh_token',
-            $result['refresh_token'],
-            60 * 24, // 1 Day
-            '/',
-            null,
-            false, // secure (HTTPS)
-            true, // httpOnly
-            false, // raw
-            'Strict' // sameSite
+            'refresh_token',                                    // Cookie name
+            $result['refresh_token'],                           // Cookie value (the refresh token)
+            60 * 24,                                            // Expiration time in minutes (1 day)
+            '/',                                                // Path (cookie available for all routes)
+            null,                                               // Domain (null = current domain)
+            app()->environment('production'),                   // Secure flag: only send over HTTPS in production
+            true,                                               // HttpOnly: not accessible via JavaScript (prevents XSS)
+            false,                                              // Raw: whether the cookie value should be URL encoded
+            app()->environment('production') ? 'None' : 'Lax'   // SameSite policy: 'None' for cross-site cookies in production, 'Lax' for local dev
         );
 
         return $response;
