@@ -52,9 +52,6 @@ class PostController extends ApiController
         return $this->successResponse('get user posts success', $result, 200);
     }
 
-    /**
-     * @param  \App\Http\Requests\CreatePostRequest  $request
-     */
     public function create(CreatePostRequest $request)
     {
 
