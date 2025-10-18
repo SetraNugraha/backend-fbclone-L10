@@ -25,7 +25,11 @@ class PostController extends ApiController
         $limitComments = (int) $request->query('limitComments', 3);
         $data = $this->postService->getAllPosts($offset, $limitPosts, $limitComments);
 
-        $result = PostResource::collection($data['posts'])->additional([
+        $posts = $data['posts']->map(function ($post) {
+            return new PostResource($post, true);
+        });
+
+        $result = PostResource::collection($posts)->additional([
             'meta' => $data['meta'],
         ]);
 

@@ -9,7 +9,7 @@ class PostResource extends JsonResource
 {
     private bool $withUser;
 
-    public function __construct($resource, bool $withUser)
+    public function __construct($resource, bool $withUser = true)
     {
         parent::__construct($resource);
         $this->withUser = $withUser;
@@ -44,9 +44,9 @@ class PostResource extends JsonResource
                         'body' => $comment->body,
                         'created_at' => $comment->created_at,
                         'user' => [
-                            'username' => $comment->user->first_name.' '.$comment->user->surname,
+                            'username' => $comment->user->first_name . ' ' . $comment->user->surname,
                             'profile_image' => $comment->user->profile_image
-                            ? asset('storage/'.$comment->user->profile_image) : null,
+                                ? asset('storage/' . $comment->user->profile_image) : null,
                         ],
                     ];
                 });
@@ -58,10 +58,10 @@ class PostResource extends JsonResource
             $data['author'] = $this->whenLoaded('user', function () {
                 return [
                     'id' => $this->user->id,
-                    'username' => $this->user->first_name.' '.$this->user->surname,
+                    'username' => $this->user->first_name . ' ' . $this->user->surname,
                     'email' => $this->user->email,
                     'profile_image' => $this->user->profile_image
-                        ? asset('storage/'.$this->user->profile_image)
+                        ? asset('storage/' . $this->user->profile_image)
                         : null,
                 ];
             });
