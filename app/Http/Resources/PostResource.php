@@ -44,6 +44,7 @@ class PostResource extends JsonResource
                         'body' => $comment->body,
                         'created_at' => $comment->created_at,
                         'user' => [
+                            'id' => $comment->user->id,
                             'username' => $comment->user->first_name . ' ' . $comment->user->surname,
                             'profile_image' => $comment->user->profile_image
                                 ? asset('storage/' . $comment->user->profile_image) : null,
