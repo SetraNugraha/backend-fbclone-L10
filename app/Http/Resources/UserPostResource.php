@@ -17,8 +17,8 @@ class UserPostResource extends JsonResource
         return [
             'author' => [
                 'id' => $this->id,
-                'username' => $this->first_name.' '.$this->surname,
-                'email' => $this->email,
+                'username' => $this->first_name . ' ' . $this->surname,
+                'profile_image' => $this->profile_image,
             ],
             'posts' => $this->whenLoaded('posts', function () {
                 return $this->posts->map(function ($post) {
