@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\Posts\CreatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\UserPostResource;
+use App\Models\Post;
 use App\Services\Posts\PostService;
 use Illuminate\Http\Request;
 
